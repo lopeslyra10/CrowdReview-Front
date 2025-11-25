@@ -33,7 +33,16 @@ export function useCompanyReviews(id?: string) {
 export function useCreateReview(companyId?: string) {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: createReview,
+    mutationFn: (payload: {
+      companyId: string;
+      rating: number;
+      comment: string;
+    }) =>
+      createReview({
+        companyId: companyId || payload.companyId,
+        rating: payload.rating,
+        comment: payload.comment,
+      }),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["company", companyId] });
       queryClient.invalidateQueries({ queryKey: ["company", companyId, "reviews"] });

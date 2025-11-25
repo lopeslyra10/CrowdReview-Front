@@ -12,7 +12,7 @@ import { Card } from "@/components/ui/card";
 import { useRegister } from "@/hooks/useAuth";
 
 const schema = z.object({
-  name: z.string().min(3, "Informe seu nome"),
+  username: z.string().min(3, "Informe seu usuário"),
   email: z.string().email("Email inválido"),
   password: z.string().min(6, "Senha deve ter pelo menos 6 caracteres"),
 });
@@ -44,8 +44,8 @@ export default function RegisterPage() {
             Junte-se à CrowdReview e monitore sua reputação com transparência.
           </h1>
           <p className="text-slate-300">
-            Crie uma conta para acessar dashboard, métricas, responder avaliações e acompanhar
-            o score antifraude médio da sua marca.
+            Crie uma conta para acessar dashboard, métricas, responder avaliações e acompanhar o
+            score antifraude médio da sua marca.
           </p>
         </div>
 
@@ -60,9 +60,11 @@ export default function RegisterPage() {
 
           <form onSubmit={onSubmit} className="space-y-4">
             <div>
-              <Label htmlFor="name">Nome</Label>
-              <Input id="name" placeholder="Seu nome" {...register("name")} />
-              {errors.name && <p className="text-sm text-rose-400">{errors.name.message}</p>}
+              <Label htmlFor="username">Usuário</Label>
+              <Input id="username" placeholder="seu_usuario" {...register("username")} />
+              {errors.username && (
+                <p className="text-sm text-rose-400">{errors.username.message}</p>
+              )}
             </div>
             <div>
               <Label htmlFor="email">Email</Label>

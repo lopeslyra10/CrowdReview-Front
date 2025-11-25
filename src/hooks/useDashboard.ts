@@ -23,13 +23,8 @@ export function useSuspiciousReviews() {
 export function useRespondReview() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: ({
-      id,
-      response,
-    }: {
-      id: string;
-      response: string;
-    }) => respondToReview(id, { response }),
+    mutationFn: ({ id, status }: { id: string; status: string }) =>
+      respondToReview(id, { status }),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["admin", "suspicious-reviews"] });
       queryClient.invalidateQueries({ queryKey: ["dashboard", "metrics"] });

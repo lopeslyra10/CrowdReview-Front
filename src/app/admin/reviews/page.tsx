@@ -14,9 +14,9 @@ export default function AdminReviewsPage() {
   const respond = useRespondReview();
 
   const handleRespond = (id: string) => {
-    const response = window.prompt("Resposta para esta avaliação:");
-    if (!response) return;
-    respond.mutate({ id, response });
+    const status = window.prompt("Status (approved/rejected)", "approved");
+    if (!status) return;
+    respond.mutate({ id, status });
   };
 
   return (
